@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"DATA-WAREHOUSE-2000-stderr-1495160200386.txt","computername":"DATA-WAREHOUSE","pid":2000,"type":"stderr","created":1495160200386},{"file":"DATA-WAREHOUSE-2000-stdout-1495160200368.txt","computername":"DATA-WAREHOUSE","pid":2000,"type":"stdout","created":1495160200368},{"file":"DATA-WAREHOUSE-3628-stderr-1495160219944.txt","computername":"DATA-WAREHOUSE","pid":3628,"type":"stderr","created":1495160219944},{"file":"DATA-WAREHOUSE-3628-stdout-1495160219923.txt","computername":"DATA-WAREHOUSE","pid":3628,"type":"stdout","created":1495160219923},{"file":"DATA-WAREHOUSE-4148-stderr-1495160884977.txt","computername":"DATA-WAREHOUSE","pid":4148,"type":"stderr","created":1495160884977},{"file":"DATA-WAREHOUSE-4148-stdout-1495160884956.txt","computername":"DATA-WAREHOUSE","pid":4148,"type":"stdout","created":1495160884956},{"file":"DATA-WAREHOUSE-4680-stderr-1495161252581.txt","computername":"DATA-WAREHOUSE","pid":4680,"type":"stderr","created":1495161252581},{"file":"DATA-WAREHOUSE-4680-stdout-1495161252566.txt","computername":"DATA-WAREHOUSE","pid":4680,"type":"stdout","created":1495161252566},{"file":"DATA-WAREHOUSE-5716-stderr-1495160923213.txt","computername":"DATA-WAREHOUSE","pid":5716,"type":"stderr","created":1495160923213},{"file":"DATA-WAREHOUSE-5716-stdout-1495160923190.txt","computername":"DATA-WAREHOUSE","pid":5716,"type":"stdout","created":1495160923190},{"file":"DATA-WAREHOUSE-6204-stderr-1495160034231.txt","computername":"DATA-WAREHOUSE","pid":6204,"type":"stderr","created":1495160034231},{"file":"DATA-WAREHOUSE-6204-stdout-1495160034217.txt","computername":"DATA-WAREHOUSE","pid":6204,"type":"stdout","created":1495160034217},{"file":"DATA-WAREHOUSE-6232-stderr-1495160050438.txt","computername":"DATA-WAREHOUSE","pid":6232,"type":"stderr","created":1495160050438},{"file":"DATA-WAREHOUSE-6232-stdout-1495160050418.txt","computername":"DATA-WAREHOUSE","pid":6232,"type":"stdout","created":1495160050418},{"file":"DATA-WAREHOUSE-6584-stderr-1495160215932.txt","computername":"DATA-WAREHOUSE","pid":6584,"type":"stderr","created":1495160215932},{"file":"DATA-WAREHOUSE-6584-stdout-1495160215910.txt","computername":"DATA-WAREHOUSE","pid":6584,"type":"stdout","created":1495160215910},{"file":"DATA-WAREHOUSE-6828-stderr-1495163213931.txt","computername":"DATA-WAREHOUSE","pid":6828,"type":"stderr","created":1495163213931},{"file":"DATA-WAREHOUSE-6828-stdout-1495163213906.txt","computername":"DATA-WAREHOUSE","pid":6828,"type":"stdout","created":1495163213906},{"file":"DATA-WAREHOUSE-6984-stderr-1495160204205.txt","computername":"DATA-WAREHOUSE","pid":6984,"type":"stderr","created":1495160204205},{"file":"DATA-WAREHOUSE-6984-stdout-1495160204192.txt","computername":"DATA-WAREHOUSE","pid":6984,"type":"stdout","created":1495160204192},{"file":"DATA-WAREHOUSE-7788-stderr-1495163219154.txt","computername":"DATA-WAREHOUSE","pid":7788,"type":"stderr","created":1495163219154},{"file":"DATA-WAREHOUSE-7788-stdout-1495163219133.txt","computername":"DATA-WAREHOUSE","pid":7788,"type":"stdout","created":1495163219133}];
+        var lastUpdated = 1495163222761;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>

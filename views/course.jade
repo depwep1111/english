@@ -1,0 +1,878 @@
+doctype html
+//if lt IE 7 
+	html.ie.ie6.no-js(lang='en')  
+//if IE 7 
+	html.ie.ie7.no-js(lang='en')  
+//if IE 8 
+	html.ie.ie8.no-js(lang='en')  
+//if IE 9 
+	html.ie.ie9.no-js(lang='en')  
+// [if gt IE 9] <!
+html.no-js(lang='en')
+	// <![endif]
+	head
+		meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+		title e Learn - Online Training Bootstrap Education Theme
+		meta(name='description', content='')
+		// CSS FILES
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		link(rel='stylesheet', href='js/inner-js/css/settings.css')
+		link(rel='stylesheet', type='text/css', media='screen', href='css/main.css')
+		link(rel='stylesheet', type='text/css', href='css/inner-style.css', media='screen')
+		link(rel='stylesheet', type='text/css', media='screen', href='css/skins/default.css', data-name='skins')
+		// Theme Switcher
+		link(rel='stylesheet', type='text/css', href='switcher/css/switcher.css', media='screen')
+		// google font style
+		link(href='http://fonts.googleapis.com/css?family=Great+Vibes', rel='stylesheet', type='text/css')
+		// font-family: 'Great Vibes', cursive;
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700', rel='stylesheet', type='text/css')
+		// font-family: 'Open Sans', sans-serif;
+		// font icon css style
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+		style.
+			.menu {
+			position: static;
+			margin: 0;
+			}
+	body.inner-page
+		// wrapper start
+		#wrapper.wrapper
+			// Preloader
+			#preloader
+				#status
+			// Start Header
+			header
+				// menu start
+				.menu
+					.navbar-wrapper
+						.container
+							// Logo
+							.logo
+								a(href='index.html')
+									span.img-circle e
+									| learn
+							// Logo
+							.navwrapper
+								.navbar.navbar-inverse.navbar-static-top
+									.container
+										nav.navArea
+											.navbar-header
+												button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+													span.icon-bar
+													span.icon-bar
+													span.icon-bar
+											.navbar-collapse.collapse
+												ul#navigation.nav.navbar-nav
+													if !user
+														li#home.menuItem
+															a(href='/') home
+													li.menuItem
+														a(href='/course') courses
+													if user
+														li.menuItem
+															a(href='/logout') Logout
+													else
+														li.menuItem
+															a(href='/login') Login
+										
+							// End Navbar
+				// menu end
+			// End Header
+			// start wrapper
+			section.wrapper
+				section.page_head
+					.container
+						.row
+							.col-lg-12.col-md-12.col-sm-12
+								h2 Courses
+								nav#breadcrumbs
+									ul
+										li You are here:
+										li
+											a(href='/') Home
+										li
+											a(href='/course') Courses
+				section.wrapper
+
+						
+				section.content.blog
+					.container
+						.row
+							.col-sm-8.col-md-8.col-lg-8
+
+								// container
+							// Sidebar Widget
+							aside.col-sm-4.col-md-4.col-lg-4.sidebar
+								.sidebar_widget
+									#accordian.sw_categories
+										if user
+											if(user._id == "591ab44bd4803922e0098aed" || user._id == "59167267bf9105c1a402306d")
+												.sw_title
+													h4 TOPICS
+												script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js')
+												ul.arrows_list
+													if chudes
+														each chude, i in chudes
+															if(chude.SoHuu == 1 || chude.author == user._id)
+																li.menu-item-has-children
+																	a(href='#') #{chude.ten}
+																	i.fa.fa-angle-right
+																	ul(id='Ulchude'+i)
+																		if hoithoais
+																			each hoithoai, a in hoithoais
+																				if (hoithoai.id_ChuDe == chude.id && (hoithoai.SoHuu == 1 || hoithoai.author == user._id))
+																					li(id='Ulhoithoainhanvat'+a)
+																						a(href='/#{hoithoai.id}&#{chude.id}') #{hoithoai.ten} 
+																						br
+																						button.btn.btn-info(type='button', data-toggle='modal', data-target='#myModalnhanvat#{i}t#{a}', style='margin-right:10px')
+																							span.glyphicon.glyphicon-plus
+																						// Modal
+																						script.
+																							var data = {};
+																							var item = '';
+																							data.id = '#{hoithoai.id}';
+																							$.ajax({
+																								type: 'POST',
+																								data: JSON.stringify(data),
+																								contentType: 'application/json',
+																								url: '/getconversation',						
+																								success:	function(obj){
+																									var item = '<div class=\"modal fade\" id=\"myModalnhanvat#{i}t#{a}\" role=\"dialog\">';
+																									item = item + '<div class=\"modal-dialog\">';
+																									item = item + '<div class=\"modal-content\">';
+																									item = item + '<div class=\"modal-header\">';
+																									item = item + '<button class=\"close\" type=\"button\" data-dismiss=\"modal\">×</button>';
+																									item = item + '<h4 class=\"modal-title\">INPUT CONVERSATION</h4></div>';
+																									item = item + '<div class=\"modal-body\">';
+																									item = item + '<div class=\"display\" id=\"display'+#{i}+'t'+#{a}+'\">';
+																									for(var k = 0;k<obj.DoanHoiThoai.length;k++)
+																									{
+																										item = item + '<p><span class=\"conver\">'+obj.DoanHoiThoai[k].name+' :</span>'+obj.DoanHoiThoai[k].say+'</p>';
+																									}
+
+																									item = item + '</div>';
+																									item = item + '<h5>Choose character</h5>';
+																									item = item + '<select class=\"form-control\" id=\"select'+#{i}+'t'+#{a}+'\">';
+																									for(var k =0;k<obj.nhanVat.length;k++)
+																									{
+																										item = item + '<option value=\"'+obj.nhanVat[k].name+'\">'+obj.nhanVat[k].name+'</option>';
+																									}
+																									
+																									item = item + '</select>';
+																									item = item + '<h5>Input text</h5>';
+																									item = item + '<input class=\"form-control\" type=\"text\"/ id=\"say'+#{i}+'t'+#{a}+'\"><br/>';
+																									item = item + '<input class=\"form-control\" type=\"hidden\"/ value=\"'+obj._id+'\" id=\"idhoithoai'+#{i}+'t'+#{a}+'\"><br/>';
+																									item = item + '<button class=\"btn btn-info btn-lg\" type=\"button\" onclick=\"myFunctionAd('+#{i}+','+#{a}+')\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button></div><br/>';
+																									item = item + '<div class=\"modal-footer\">';
+																									item = item + '<button class=\"btn btn-default\" type=\"button\" data-dismiss=\"modal\">Close</button></div></div></div></div>';
+																									$('#Ulhoithoainhanvat#{a}').append(item);
+
+																								}
+																							});
+																						button.btn.btn-info(type='button', data-toggle='modal', data-target='#myModalhoithoai#{i}t#{a}', style='margin-right:10px')
+																							span.fa.fa-user
+																						// Modal
+																						script.
+																							
+																							var item = '';
+																							item = item + '<div class=\"modal fade\" id=\"myModalhoithoai#{i}t#{a}\" role=\"dialog\">';
+																							item = item + '<div class=\"modal-dialog\">';
+																							item = item + '<div class=\"modal-content\">';
+																							item = item + '<form method=\"post\" action=\"/doanhoithoai/add\">';
+																							item = item + '<div class=\"modal-header\">';
+																							item = item + '<button class=\"close\" type=\"button\" data-dismiss=\"modal\">×</button>';
+																							item = item + '<h4 class=\"modal-title\">INPUT NAME CHARACTER</h4></div>';
+																							item = item + '<div class=\"modal-body\">';
+																							item = item + '<h5>Input name character</h5>';
+																							item = item + '<input class=\"form-control\" type=\"text\" name=\"name\"/>';
+																							item = item + '<input class=\"form-control\" type=\"hidden\" name=\"conversation\" value=\"#{hoithoai.id}\"/><br/></div><br/>';
+																							item = item + '<div class=\"modal-footer\">';
+																							item = item + '<button class=\"btn btn-default\" type=\"button\" data-dismiss=\"modal\">Close</button>';
+																							item = item + '<button class=\"btn btn-default\" type=\"submit\">Add</button>';
+																							item = item + '</div></form></div></div></div>';
+																							$('#Ulhoithoainhanvat#{a}').append(item);
+																						button.btn.btn-info(type='button' onclick='remove("#{hoithoai.id}",#{a})')
+																								span.fa.fa-close					
+																		br
+																		button.btn.btn-info(type='button', data-toggle='modal', data-target='#myModalChude#{i}') New Conversation
+																		script.
+																			var item = '';
+																			item = item + '<div class=\"modal fade\" id=\"myModalChude#{i}\" role=\"dialog\">';
+																			item = item + '<div class=\"modal-dialog\">';
+																			item = item + '<div class=\"modal-content\">';
+																			item = item + '<form method=\"post\" action=\"/hoithoai/add\">';
+																			item = item + '<div class=\"modal-header\">';
+																			item = item + '<button class=\"close\" type=\"button\" data-dismiss=\"modal\">×</button>';
+																			item = item + '<h4 class=\"modal-title\">INPUT NAME CONVERSATION</h4></div>';
+																			item = item + '<div class=\"modal-body\">';
+																			item = item + '<p>Input name conversation</p>';
+																			item = item + '<input class=\"form-control\" type=\"text\" name=\"name\"/>';
+																			item = item + '<input class=\"form-control\" type=\"hidden\" name=\"topic\" value=\"#{chude.id}\"/><br/>';
+																			item = item + '<div class=\"col-md-4 col-md-offset-10\"></div>';
+																			item = item + '</div><br/><div class=\"modal-footer\">';
+																			item = item + '<button class=\"btn btn-default\" type=\"button\" data-dismiss=\"modal\">Close</button>';
+																			item = item + '<button class=\"btn btn-default\" type=\"submit\">Add</button>';
+																			item = item + '</div></form></div></div></div></button>';
+																			$('#Ulchude#{i}').append(item);
+
+																		
+																		
+												
+												button.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') New Topic
+												// Modal
+												#myModal.modal.fade(role='dialog')
+													.modal-dialog
+														// Modal content
+														.modal-content
+															form(method='post',action='/chude/add')
+																.modal-header
+																	button.close(type='button', data-dismiss='modal') ×
+																	h4.modal-title INPUT NAME TOPIC
+																.modal-body
+																	p Input name topic
+																	input.form-control(type="text" name="name")
+																	br
+																	.col-md-4.col-md-offset-10
+																br
+																.modal-footer
+																	button.btn.btn-default(type="button", data-dismiss="modal") Close
+																	button.btn.btn-default(type="submit") Add
+											else
+												.sw_title
+													h4 TOPICS
+												script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js')
+												ul.arrows_list
+													if chudes
+														each chude, i in chudes
+															if(chude.SoHuu == 1 || chude.author == user._id)
+																li.menu-item-has-children
+																	a(href='#') #{chude.ten}
+																	i.fa.fa-angle-right
+																	ul(id='Ulchude'+i)
+																		if hoithoais
+																			each hoithoai, a in hoithoais
+																				if (hoithoai.id_ChuDe == chude.id && (hoithoai.SoHuu == 1 || hoithoai.author == user._id))
+																					li(id='Ulhoithoainhanvat'+a)
+																						a(href='/#{hoithoai.id}&#{chude.id}') #{hoithoai.ten}
+																						br
+																						if (hoithoai.SoHuu == 0)
+																							button.btn.btn-info(type='button', data-toggle='modal', data-target='#myModalnhanvat#{i}t#{a}', style='margin-right:10px')
+																								span.glyphicon.glyphicon-plus
+																							// Modal
+																							script.
+																								var data = {};
+																								var item = '';
+																								data.id = '#{hoithoai.id}';
+																								$.ajax({
+																									type: 'POST',
+																									data: JSON.stringify(data),
+																									contentType: 'application/json',
+																									url: '/getconversation',						
+																									success:	function(obj){
+																										var item = '<div class=\"modal fade\" id=\"myModalnhanvat#{i}t#{a}\" role=\"dialog\">';
+																										item = item + '<div class=\"modal-dialog\">';
+																										item = item + '<div class=\"modal-content\">';
+																										item = item + '<div class=\"modal-header\">';
+																										item = item + '<button class=\"close\" type=\"button\" data-dismiss=\"modal\">×</button>';
+																										item = item + '<h4 class=\"modal-title\">INPUT CONVERSATION</h4></div>';
+																										item = item + '<div class=\"modal-body\">';
+																										item = item + '<div class=\"display\" id=\"display'+#{i}+'t'+#{a}+'\">';
+																										for(var k = 0;k<obj.DoanHoiThoai.length;k++)
+																										{
+																											item = item + '<p><span class=\"conver\">'+obj.DoanHoiThoai[k].name+' :</span>'+obj.DoanHoiThoai[k].say+'</p>';
+																										}
+
+																										item = item + '</div>';
+																										item = item + '<h5>Choose character</h5>';
+																										item = item + '<select class=\"form-control\" id=\"select'+#{i}+'t'+#{a}+'\">';
+																										for(var k =0;k<obj.nhanVat.length;k++)
+																										{
+																											item = item + '<option value=\"'+obj.nhanVat[k].name+'\">'+obj.nhanVat[k].name+'</option>';
+																										}
+																										
+																										item = item + '</select>';
+																										item = item + '<h5>Input text</h5>';
+																										item = item + '<input class=\"form-control\" type=\"text\"/ id=\"say'+#{i}+'t'+#{a}+'\"><br/>';
+																										item = item + '<input class=\"form-control\" type=\"hidden\"/ value=\"'+obj._id+'\" id=\"idhoithoai'+#{i}+'t'+#{a}+'\"><br/>';
+																										item = item + '<button class=\"btn btn-info btn-lg\" type=\"button\" onclick=\"myFunction('+#{i}+','+#{a}+')\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button></div><br/>';
+																										item = item + '<div class=\"modal-footer\">';
+																										item = item + '<button class=\"btn btn-default\" type=\"button\" data-dismiss=\"modal\">Close</button></div></div></div></div>';
+																										$('#Ulhoithoainhanvat#{a}').append(item);
+
+																									}
+																								});
+																							button.btn.btn-info(type='button', data-toggle='modal', data-target='#myModalhoithoai#{i}t#{a}', style='margin-right:10px')
+																								span.fa.fa-user
+																							// Modal
+																							script.
+																								
+																								var item = '';
+																								item = item + '<div class=\"modal fade\" id=\"myModalhoithoai#{i}t#{a}\" role=\"dialog\">';
+																								item = item + '<div class=\"modal-dialog\">';
+																								item = item + '<div class=\"modal-content\">';
+																								item = item + '<form method=\"post\" action=\"/doanhoithoai/add\">';
+																								item = item + '<div class=\"modal-header\">';
+																								item = item + '<button class=\"close\" type=\"button\" data-dismiss=\"modal\">×</button>';
+																								item = item + '<h4 class=\"modal-title\">INPUT NAME CHARACTER</h4></div>';
+																								item = item + '<div class=\"modal-body\">';
+																								item = item + '<h5>Input name character</h5>';
+																								item = item + '<input class=\"form-control\" type=\"text\" name=\"name\"/>';
+																								item = item + '<input class=\"form-control\" type=\"hidden\" name=\"conversation\" value=\"#{hoithoai.id}\"/><br/></div><br/>';
+																								item = item + '<div class=\"modal-footer\">';
+																								item = item + '<button class=\"btn btn-default\" type=\"button\" data-dismiss=\"modal\">Close</button>';
+																								item = item + '<button class=\"btn btn-default\" type=\"submit\">Add</button>';
+																								item = item + '</div></form></div></div></div>';
+																								$('#Ulhoithoainhanvat#{a}').append(item);
+																							button.btn.btn-info(type='button' onclick='remove("#{hoithoai.id}",#{a})')
+																								span.fa.fa-close
+																			
+																		button.btn.btn-info(type='button', data-toggle='modal', data-target='#myModalChude#{i}') New Conversation
+																		script.
+																			var item = '';
+																			item = item + '<div class=\"modal fade\" id=\"myModalChude#{i}\" role=\"dialog\">';
+																			item = item + '<div class=\"modal-dialog\">';
+																			item = item + '<div class=\"modal-content\">';
+																			item = item + '<form method=\"post\" action=\"/addconversaction\">';
+																			item = item + '<div class=\"modal-header\">';
+																			item = item + '<button class=\"close\" type=\"button\" data-dismiss=\"modal\">×</button>';
+																			item = item + '<h4 class=\"modal-title\">INPUT NAME CONVERSATION</h4></div>';
+																			item = item + '<div class=\"modal-body\">';
+																			item = item + '<p>Input name conversation</p>';
+																			item = item + '<input class=\"form-control\" type=\"text\" name=\"name\"/>';
+																			item = item + '<input class=\"form-control\" type=\"hidden\" name=\"idchude\" value=\"#{chude.id}\"/><br/>';
+																			item = item + '<div class=\"col-md-4 col-md-offset-10\"></div>';
+																			item = item + '</div><br/><div class=\"modal-footer\">';
+																			item = item + '<button class=\"btn btn-default\" type=\"button\" data-dismiss=\"modal\">Close</button>';
+																			item = item + '<button class=\"btn btn-default\" type=\"submit\">Add</button>';
+																			item = item + '</div></form></div></div></div></button>';
+																			$('#Ulchude#{i}').append(item);
+												button.btn.btn-info(type='button', data-toggle='modal', data-target='#myModal') New Topic
+												// Modal
+												#myModal.modal.fade(role='dialog')
+													.modal-dialog
+														// Modal content
+														.modal-content
+															form(method='post',action='/addtopic')
+																.modal-header
+																	button.close(type='button', data-dismiss='modal') ×
+																	h4.modal-title INPUT NAME TOPIC
+																.modal-body
+																	p Input name topic
+																	input.form-control(type="text" name="name")
+																	br
+																	.col-md-4.col-md-offset-10
+																br
+																.modal-footer
+																	button.btn.btn-default(type="button", data-dismiss="modal") Close
+																	button.btn.btn-default(type="submit") Add
+										else
+											.sw_title
+												h4 TOPICS
+											ul.arrows_list
+												if chudes
+													each chude, i in chudes
+														if(chude.SoHuu == 1)
+															li.menu-item-has-children
+																a(href='#') #{chude.ten}
+																i.fa.fa-angle-right
+																ul
+																	if hoithoais
+																		each hoithoai, a in hoithoais
+																			if (hoithoai.id_ChuDe == chude.id && hoithoai.SoHuu == 1)
+																				li
+																					a(href='/#{hoithoai.id}&#{chude.id}') #{hoithoai.ten}							
+						// /.row
+
+					// /.container
+			// end wrapper
+			// Footer start
+			footer.footer
+				.container
+					.row
+						.pull-left
+							p © 2015  eLearn Theme. All Rights Reserved
+						.pull-right
+							a.gototop.smooth(href='#wrapper')
+								| Go To Top
+								i.fa.fa-chevron-up
+			// Footer end
+		// jquary min js
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+		script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js')
+		script(src='js/jquery.easing.1.3.js')
+		script(src='js/retina-1.1.0.min.js')
+		script(src='js/inner-js/js/jquery.theme.revolution.min.js')
+		script(type='text/javascript', src='js/jquery.jcarousel.js')
+		script(type='text/javascript', src='js/jquery.isotope.min.js')
+		script(type='text/javascript', src='js/swipe.js')
+		script(src='js/main.js')
+		// for theme custom jquery
+		script(src='js/custom.js')
+
+		script.
+			function remove(i,a) {
+				var data = {};
+				data.idhoithoai = i;
+				var obj = {};
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+						contentType: 'application/json',
+						url: '/removeconversation',						
+						success:	function(obj){
+
+							$('#Ulhoithoainhanvat'+a+'').remove();
+						}
+				});
+				
+			}
+
+		script.
+			function myFunction(i,a) {
+				var data = {};
+				data.idhoithoai = document.getElementById('idhoithoai'+i+'t'+a+'').value;
+				data.say = document.getElementById('say'+i+'t'+a+'').value;
+				data.nhanvat = document.getElementById('select'+i+'t'+a+'').value;
+				var obj = {};
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+						contentType: 'application/json',
+						url: '/addsay',						
+						success:	function(obj){
+
+							$('#display'+i+'t'+a+'').append('<p><span class=\"conver\">'+data.nhanvat+' :</span>'+data.say+'</p>');
+						}
+				});
+			}
+		script.
+			function myFunctionAd(i,a) {
+				var data = {};
+				data.idhoithoai = document.getElementById('idhoithoai'+i+'t'+a+'').value;
+				data.say = document.getElementById('say'+i+'t'+a+'').value;
+				data.nhanvat = document.getElementById('select'+i+'t'+a+'').value;
+				var obj = {};
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+						contentType: 'application/json',
+						url: '/doanhoithoainoi/add',						
+						success:	function(obj){
+
+							$('#display'+i+'t'+a+'').append('<p><span class=\"conver\">'+data.nhanvat+' :</span>'+data.say+'</p>');
+						}
+				});
+			}
+		script#script4.
+		script#script3.
+			function myFunction0(textvoice, vitri) {
+				var item = '';
+				var k = 0;
+				var textAPI = [];
+				var textVoice = [];
+				var recognizer = new webkitSpeechRecognition();
+				recognizer.lang = "en";
+				recognizer.continuous = true;
+				recognizer.onresult = function(event) {
+						if (event.results.length > 0) {
+							var result = event.results[event.results.length-1];
+							if(result.isFinal) {
+								console.log(result[0].transcript);
+								document.getElementById("text").value = result[0].transcript;
+								document.getElementById(''+vitri+'').textContent="";
+								var text1 = result[0].transcript;
+								if(text1.indexOf(" ") == 0)
+								{
+									text1 = text1.substring(1);
+								}
+								else
+								{
+									text1 = result[0].transcript
+								}
+								textAPI = text1.split(/[ \(,.\!?+:)]+/);
+								textVoice = textvoice.split(/[ \(,.\!?+:)]+/);
+								if(textAPI.length >= textVoice.length)
+								{
+									console.log("if1");
+									k = textVoice.length;
+									for(var i = 0;i<k;i++)
+									{
+										if(textAPI[i].toLowerCase() == textVoice[i].toLowerCase())
+										{
+											$('#'+vitri+'').append('<span style="color:blue">'+textVoice[i]+" "+'</span>');
+										}
+										else
+										{
+											$('#'+vitri+'').append('<span style="color:red">'+textVoice[i]+" "+'</span>');
+										}
+									}
+								}
+								else
+								{
+									console.log("if2");
+									var l = textAPI.length;
+									k = textVoice.length;
+									for(var i = 0;i<k;i++)
+									{
+										if(i<l)
+										{
+											if(textAPI[i].toLowerCase() == textVoice[i].toLowerCase())
+											{
+												$('#'+vitri+'').append('<span style="color:blue">'+textVoice[i]+" "+'</span>');
+											}
+											else
+											{
+												$('#'+vitri+'').append('<span style="color:red">'+textVoice[i]+" "+'</span>');
+											}
+										}
+										else if(i>=l)
+										{
+											$('#'+vitri+'').append('<span style="color:red">'+textVoice[i]+" "+'</span>');
+										}
+									}
+								}
+							}
+						}  
+				};
+				recognizer.start();
+			}
+		script.
+			function myFunction3() {
+				function speak(language, country, preferredNames, text, textvoice, status) {
+
+					var resolvePromise;
+					var promise = new Promise(r => resolvePromise = r);
+					var voices = window.speechSynthesis.getVoices();
+					if (voices.length == 0) {
+							new Promise(r => {
+									window.speechSynthesis.onvoiceschanged = () => { 
+													window.speechSynthesis.onvoiceschanged = null;
+													r(); 
+											};
+							})
+							.then(() => speak(language, country, preferredNames, text, textvoice, status))
+							.then(resolvePromise);
+					} else {
+							var msg = new SpeechSynthesisUtterance(text);
+							voices.sort((a, b) => {
+									if (language != null) {
+											var matchA = a.lang.indexOf(language + "-") == 0;
+											var matchB = b.lang.indexOf(language + "-") == 0;
+											if (! matchA && ! matchB) return 0;
+											if (! matchA && matchB) return 1;
+											if (! matchB && matchA) return -1;
+									}
+									if (country != null) {
+											var matchA = a.lang.indexOf("-" + country) == a.lang.length - ("-" + country).length;
+											var matchB = b.lang.indexOf("-" + country) == b.lang.length - ("-" + country).length;
+											if (! matchA && ! matchB) return 0;
+											if (! matchA && matchB) return 1;
+											if (! matchB && matchA) return -1;
+									}
+									if (preferredNames != null) {
+											var indexA = voices.length;
+											var indexB = voices.length;
+											preferredNames.forEach((e, i) => {
+													if (indexA == voices.length && a.name.match(e) != null) indexA = i; 
+													if (indexB == voices.length && b.name.match(e) != null) indexB = i; 
+											});
+											return indexA - indexB;
+									}
+									return 0;
+							});
+							if (voices.length > 0) msg.voice = voices[0];
+							if (language != null) {
+									msg.lang = language;
+									if (country != null) msg.lang += "-" + country;
+							}
+							msg.onend = resolvePromise;
+							//window.speechSynthesis.speak(msg);
+							
+							//setTimeout(function(){recognizer.start(); }, 9000);
+							console.log(status);
+							if(status == "1")
+							{
+								window.speechSynthesis.speak(msg);
+								myFunction0(textvoice)
+							}
+							if(status == "0")
+							{
+								setTimeout(function(){window.speechSynthesis.speak(msg); }, 30000);
+								myFunction0(textvoice)
+							}
+							
+							//myFunction4();
+							//recognizer.start();
+							// msg.onend not triggered without call to console.log(msg)?
+							console.log(msg);
+							console.log("kt"+voices[0].lang);
+					}
+					return promise;
+				}
+				
+				speak(null, null, null, "Hello, world.", " okay","1")
+				.then(() => speak("en", "GB", [ /\Wmale/i ], "Find latest news coverage of breaking news events, trending topics, and compelling articles, photos and videos of US and international news stories.", " yes",null));
+			}
+		script#script1.
+		script#script2.
+		script.
+			$(document).ready(function(){
+				var i = 0;
+				var item1 = '';
+				var data = {};
+				var obj = {};
+				data.id = document.getElementById('IDdoanhoithoai').value;
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+						contentType: 'application/json',
+						url: '/getconversation',						
+						success:	function(obj){
+							//alert(obj.DoanHoiThoai[0].say);
+							//speak("en", "GB", [ /\Wmale/i ], obj.DoanHoiThoai[0].say));
+							item1 = item1+'$(document).ready(function(){';
+							item1 = item1+'$(\'#start\').click(function(){';
+							item1 = item1+'function speak(language, country, preferredNames, text) {';
+							item1 = item1+'var resolvePromise;';
+							item1 = item1+'var promise = new Promise(r => resolvePromise = r);';
+							item1 = item1+'var voices = window.speechSynthesis.getVoices();';
+							item1 = item1+'if (voices.length == 0) {';
+							item1 = item1+'new Promise(r => {';
+							item1 = item1+'window.speechSynthesis.onvoiceschanged = () => {';
+							item1 = item1+'window.speechSynthesis.onvoiceschanged = null;';
+							item1 = item1+'r();';
+							item1 = item1+'};';
+							item1 = item1+'})';
+							item1 = item1+'.then(() => speak(language, country, preferredNames, text))';
+							item1 = item1+'.then(resolvePromise);';
+							item1 = item1+'} else {';
+							item1 = item1+'var msg = new SpeechSynthesisUtterance(text);';
+							item1 = item1+'voices.sort((a, b) => {';
+							item1 = item1+'if (language != null) {';
+							item1 = item1+'var matchA = a.lang.indexOf(language + \"-\") == 0;';
+							item1 = item1+'var matchB = b.lang.indexOf(language + \"-\") == 0;';
+							item1 = item1+'if (! matchA && ! matchB) return 0;';
+							item1 = item1+'if (! matchA && matchB) return 1;';
+							item1 = item1+'if (! matchB && matchA) return -1;';
+							item1 = item1+'}';
+							item1 = item1+'if (country != null) {';
+							item1 = item1+'var matchA = a.lang.indexOf(\"-\" + country) == a.lang.length - (\"-\" + country).length;';
+							item1 = item1+'var matchB = b.lang.indexOf(\"-\" + country) == b.lang.length - (\"-\" + country).length;';
+							item1 = item1+'if (! matchA && ! matchB) return 0;';
+							item1 = item1+'if (! matchA && matchB) return 1;';
+							item1 = item1+'if (! matchB && matchA) return -1;';
+							item1 = item1+'}';
+							item1 = item1+'if (preferredNames != null) {';
+							item1 = item1+'var indexA = voices.length;';
+							item1 = item1+'var indexB = voices.length;';
+							item1 = item1+'preferredNames.forEach((e, i) => {';
+							item1 = item1+'if (indexA == voices.length && a.name.match(e) != null) indexA = i;';
+							item1 = item1+'if (indexB == voices.length && b.name.match(e) != null) indexB = i;';
+							item1 = item1+'});';
+							item1 = item1+'return indexA - indexB;';
+							item1 = item1+'}';
+							item1 = item1+'return 0;';
+							item1 = item1+'});';
+							item1 = item1+'if (voices.length > 0) msg.voice = voices[0];';
+							item1 = item1+'if (language != null) {';
+							item1 = item1+'msg.lang = language;';
+							item1 = item1+'if (country != null) msg.lang += \"-\" + country;';
+							item1 = item1+'}';
+							item1 = item1+'msg.onend = resolvePromise;';
+							item1 = item1+'setTimeout(function(){window.speechSynthesis.speak(msg); }, 1000);';
+
+							item1 = item1+'console.log(msg);';
+							item1 = item1+'}';
+							item1 = item1+'return promise;';
+							item1 = item1+'}';
+							// thêm speak
+							if (obj.DoanHoiThoai.length > 1)
+							{
+								item1 = item1+'speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[0].say)+'\")';
+								for(i=1;i<obj.DoanHoiThoai.length-1;i++)
+								{
+									item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[i].say)+'\"))';
+								}
+								item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[obj.DoanHoiThoai.length-1].say)+'\"));';
+							}
+							else
+							{
+								item1 = item1+'speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[0].say)+'\");';
+							}
+							item1 = item1+'});';
+							item1 = item1+'});';
+
+							$('#script1').html(item1);
+						}
+				});
+			});
+		script.
+			$(document).ready(function(){
+				var i = 0;
+				var item1 = '';
+				var data = {};
+				var obj = {};
+				data.id = document.getElementById('IDdoanhoithoai').value;
+				name = "#{name}";
+				$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+						contentType: 'application/json',
+						url: '/getconversation',						
+						success:	function(obj){
+							//alert(obj.DoanHoiThoai[0].say);
+							//speak("en", "GB", [ /\Wmale/i ], obj.DoanHoiThoai[0].say));
+
+							item1 = item1+'$(document).ready(function(){';
+							item1 = item1+'$(\'#sound\').click(function(){';
+							item1 = item1+'function speak(language, country, preferredNames, text, textvoice, status, vitri) {';
+
+							item1 = item1+'var resolvePromise;';
+							item1 = item1+'var promise = new Promise(r => resolvePromise = r);';
+							item1 = item1+'var voices = window.speechSynthesis.getVoices();';
+							item1 = item1+'if (voices.length == 0) {';
+							item1 = item1+'new Promise(r => {';
+							item1 = item1+'window.speechSynthesis.onvoiceschanged = () => {';
+							item1 = item1+'window.speechSynthesis.onvoiceschanged = null;';
+							item1 = item1+'r();';
+							item1 = item1+'};';
+							item1 = item1+'})';
+							item1 = item1+'.then(() => speak(language, country, preferredNames, text, textvoice, status, vitri))';
+							item1 = item1+'.then(resolvePromise);';
+							item1 = item1+'} else {';
+							item1 = item1+'var msg = new SpeechSynthesisUtterance(text);';
+							item1 = item1+'voices.sort((a, b) => {';
+							item1 = item1+'if (language != null) {';
+							item1 = item1+'var matchA = a.lang.indexOf(language + \"-\") == 0;';
+							item1 = item1+'var matchB = b.lang.indexOf(language + \"-\") == 0;';
+							item1 = item1+'if (! matchA && ! matchB) return 0;';
+							item1 = item1+'if (! matchA && matchB) return 1;';
+							item1 = item1+'if (! matchB && matchA) return -1;';
+							item1 = item1+'}';
+							item1 = item1+'if (country != null) {';
+							item1 = item1+'var matchA = a.lang.indexOf(\"-\" + country) == a.lang.length - (\"-\" + country).length;';
+							item1 = item1+'var matchB = b.lang.indexOf(\"-\" + country) == b.lang.length - (\"-\" + country).length;';
+							item1 = item1+'if (! matchA && ! matchB) return 0;';
+							item1 = item1+'if (! matchA && matchB) return 1;';
+							item1 = item1+'if (! matchB && matchA) return -1;';
+							item1 = item1+'}';
+							item1 = item1+'if (preferredNames != null) {';
+							item1 = item1+'var indexA = voices.length;';
+							item1 = item1+'var indexB = voices.length;';
+							item1 = item1+'preferredNames.forEach((e, i) => {';
+							item1 = item1+'if (indexA == voices.length && a.name.match(e) != null) indexA = i;';
+							item1 = item1+'if (indexB == voices.length && b.name.match(e) != null) indexB = i;';
+							item1 = item1+'});';
+							item1 = item1+'return indexA - indexB;';
+							item1 = item1+'}';
+							item1 = item1+'return 0;';
+							item1 = item1+'});';
+							item1 = item1+'if (voices.length > 0) msg.voice = voices[0];';
+							item1 = item1+'if (language != null) {';
+							item1 = item1+'msg.lang = language;';
+							item1 = item1+'if (country != null) msg.lang += \"-\" + country;';
+							item1 = item1+'}';
+							item1 = item1+'msg.onend = resolvePromise;';
+							
+							item1 = item1+'if(status == \"1\"){';
+							item1 = item1+'window.speechSynthesis.speak(msg);';
+							item1 = item1+'}';
+							item1 = item1+'if(status == \"0\"){';
+							item1 = item1+'setTimeout(function(){window.speechSynthesis.speak(msg); }, 15000);';
+							item1 = item1+'myFunction0(textvoice, vitri);';
+							item1 = item1+'}';
+							item1 = item1+'if(status == \"-1\"){';
+							item1 = item1+'myFunction0(textvoice, vitri)';
+							item1 = item1+'}';
+
+							item1 = item1+'console.log(msg);';
+							item1 = item1+'}';
+							item1 = item1+'return promise;';
+							item1 = item1+'}';
+							// thêm speak
+							if (obj.DoanHoiThoai[0].name == name)
+							{
+								if ((obj.DoanHoiThoai.length % 2) == 0)
+								{
+										item1 = item1+'speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[0].say)+'\", \"'+(obj.DoanHoiThoai[1].say)+'\", \"1\", 0)';
+										for(i=1;i<obj.DoanHoiThoai.length-1;i++)
+										{
+											if(obj.DoanHoiThoai[i].name == name)
+											{
+												item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[i].say)+'\", \"'+(obj.DoanHoiThoai[i-1].say)+'\", \"0\", '+(i-1)+'))';
+											}
+										}
+										item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], null, \"'+(obj.DoanHoiThoai[obj.DoanHoiThoai.length-1].say)+'\", \"-1\", '+(obj.DoanHoiThoai.length-1)+'));';
+
+									
+									
+								}
+								else
+								{
+									if (obj.DoanHoiThoai.length > 1)
+									{
+										item1 = item1+'speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[0].say)+'\", \"'+(obj.DoanHoiThoai[1].say)+'\", \"1\", 0)';
+										for(i=1;i<obj.DoanHoiThoai.length;i++)
+										{
+											if(obj.DoanHoiThoai[i].name == name)
+											{
+												item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[i].say)+'\", \"'+(obj.DoanHoiThoai[i-1].say)+'\", \"0\", '+(i-1)+'))';
+											}
+										}
+									}
+									else
+									{
+										item1 = item1+'speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[0].say)+'\", null, null, 0);';
+									}
+								}
+							}
+							else
+							{
+								if ((obj.DoanHoiThoai.length % 2) == 0)
+								{
+
+										item1 = item1+'speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[1].say)+'\", \"'+(obj.DoanHoiThoai[0].say)+'\", \"0\", 0)';
+										for(i=2;i<obj.DoanHoiThoai.length-2;i++)
+										{
+											if(obj.DoanHoiThoai[i].name == name)
+											{
+												item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[i].say)+'\", \"'+(obj.DoanHoiThoai[i-1].say)+'\", \"0\", '+(i-1)+'))';
+											}
+										}
+										item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[obj.DoanHoiThoai.length -1].say)+'\", \"'+(obj.DoanHoiThoai[obj.DoanHoiThoai.length-2].say)+'\", \"0\", '+(obj.DoanHoiThoai.length-2)+'));';
+										
+								}
+								else
+								{
+									if (obj.DoanHoiThoai.length > 1)
+									{
+										item1 = item1+'speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[1].say)+'\", \"'+(obj.DoanHoiThoai[0].say)+'\", \"0\", 0)';
+										for(i=2;i<obj.DoanHoiThoai.length-1;i++)
+										{
+											if(obj.DoanHoiThoai[i].name == name)
+											{
+												item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], \"'+(obj.DoanHoiThoai[i].say)+'\", \"'+(obj.DoanHoiThoai[i-1].say)+'\", \"0\", '+(i-1)+'))';
+											}
+										}
+										item1 = item1+'.then(() => speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], null, \"'+(obj.DoanHoiThoai[obj.DoanHoiThoai.length-1].say)+'\", \"-1\", '+(obj.DoanHoiThoai.length-1)+'));';
+									}
+									else
+									{
+										item1 = item1+'speak(\"en\", null, [ /Google US English/, /Samantha/, /Fiona/, /Victoria/, /female/i ], null, \"'+(obj.DoanHoiThoai[0].say)+'\", \"-1\", 0);';
+									}
+								}
+							}
+							item1 = item1+'});';
+							item1 = item1+'});';
+
+							$('#script2').html(item1);
+						}
+				});
+			});
+
+		
+
+
+		

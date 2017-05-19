@@ -1,0 +1,282 @@
+doctype html
+html.no-js(lang='en')
+	// <![endif]
+	head
+		meta(charset='UTF-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		// Metas Page details
+		title e Learn
+		meta(name='description', content='UX designer and web developer')
+		meta(name='author', content='')
+		// Mobile Specific Metas
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		// main style
+		link(rel='stylesheet', type='text/css', media='screen', href='css/bootstrap.min.css')
+		link(rel='stylesheet', type='text/css', media='screen', href='css/main.css')
+		link(rel='stylesheet', type='text/css', media='screen', href='css/skins/default.css', data-name='skins')
+		link(href='http://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
+		// font-family: 'Metrophobic', sans-serif;
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700', rel='stylesheet', type='text/css')
+		// font-family: 'Open Sans', sans-serif;
+		link(href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,500,300italic,300,100,500italic', rel='stylesheet', type='text/css')
+		// font-family: 'Roboto', sans-serif;
+		// font icon css style
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+	body(onload='load()', onunload='GUnload()')
+		// wrapper start
+		#wrapper.wrapper
+			// Preloader
+			#preloader
+				#status
+			// Header start
+			header
+				
+				// menu start
+				.menu
+					.navbar-wrapper
+						.container
+							// Navbar start
+							.navwrapper
+								.navbar.navbar-inverse.navbar-static-top
+									.container
+										.logo
+											a(href='#')
+												span.img-circle e
+												| learn
+										nav.navArea
+											.navbar-header
+												button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+													span.icon-bar
+													span.icon-bar
+													span.icon-bar
+											.navbar-collapse.collapse
+												ul#navigation.nav.navbar-nav
+													li#home.menuItem
+															a(href='/') home
+													li.menuItem
+														a(href='/course') courses
+													if user
+														li.menuItem
+															a(href='/logout') Logout
+													else
+														li.menuItem
+															a(href='/login') Login
+							// Navbar end
+				// menu end
+				// banner start
+				.header_v1
+					#banner.banner.row
+						.col-xs-12.col-sm-6.col-md-12.col-lg-12.noPadd.slides-container(style='height:100%')
+							// background slide show start
+							.slide
+								// Header text1 start
+								.container.hedaer-inner
+									.bannerText
+										h3 Let our website support your language learning.
+							
+										p
+											a.smooth(href='#course')
+												| View  Courses 
+												i.fa.fa-angle-right
+								// Header text1 end
+								img(src='images/header-image/image01.jpg', alt='image01')
+							.slide
+								// Header text2 start
+								.container.hedaer-inner
+									.bannerText
+										h3 Learning Online Becomes Easier
+										
+										p
+											a.smooth(href='#course')
+												| View  Courses 
+												i.fa.fa-angle-right
+								// Header text2 end
+								img(src='images/header-image/image02.jpg', alt='image02')
+							// background slide show end
+				// banner end
+				// Header form
+				.container.form-header
+					.form-container
+						h2 Become a member
+						br
+						.row
+							form(method='post',action='/register')
+								.col-xs-12.col-sm-12.col-md-12.col-lg-12.form-row
+									input.normal.small(type='text', placeholder='First name', name="first")
+									input.normal.small.last(type='text', placeholder='Last name', name="last")
+								.col-xs-12.col-sm-12.col-md-12.col-lg-12.form-row
+									input.normal.small(type='text', placeholder='Email Address', name="email")
+									input.normal.small.last(type='text', placeholder='Username', name="username")
+									
+								.col-xs-12.col-sm-12.col-md-12.col-lg-12.form-row
+									input.normal.small(type='password', placeholder='Password', name="password")
+									input.normal.small.last(type='password', placeholder='Enter Password', name="password2")
+									
+								h3(style='text-align: center;') or sign in with
+								.col-xs-12.col-sm-12.col-md-12.col-lg-12.form-row
+									button(type="button" onclick="location.href='/auth/facebook';").loginBtn.loginBtn--facebook
+										| Facebook
+									button(type="button" onclick="location.href='/auth/google';").loginBtn.loginBtn--google(style=' margin-left: 16px')
+										| Google +
+								.col-xs-12.col-sm-12.col-md-12.col-lg-12
+									input.button(type='submit', value='Sign me up')
+				// /Header form
+			// Header end
+			// Membership features start
+			section#features
+			// /Membership features end
+			// Available course start
+			
+			footer.footer
+				.container
+					.row
+						.pull-left
+							p © 2015  eLearn Theme. All Rights Reserved
+						.pull-right
+							a.gototop.smooth(href='#wrapper')
+								| Go To Top
+								i.fa.fa-chevron-up
+			// Footer end
+		// wrapper end
+		// modernizr js
+		script(type='text/javascript', src='js/modernizr.custom.26633.js')
+		// jquary min js
+		script(type='text/javascript', src='js/jquery-1.11.2.min.js')
+		script(src='js/bootstrap.min.js')
+		// for placeholder jquery
+		script(type='text/javascript', src='js/jquery.placeholder.js')
+		// for header jquery
+		script(type='text/javascript', src='js/stickUp.js')
+		script(src='js/jquery.superslides.js', type='text/javascript', charset='utf-8')
+		script(type='text/javascript').
+			"use strict";
+			//<![CDATA[
+			$('.header_v1 #banner').superslides({
+			animation: 'fade',
+			play: 5000
+			});
+			//]]>
+		// for portfolio jquery
+		script(src='js/jquery.isotope.js', type='text/javascript')
+		link#theme(type='text/css', rel='stylesheet', property='stylesheet', href='css/jquery-ui-1.8.16.custom.css')
+		link(type='text/css', rel='stylesheet', property='stylesheet', href='css/lightbox.min.css')
+		script(type='text/javascript', src='js/jquery.ui.widget.min.js')
+		script(type='text/javascript', src='js/jquery.ui.rlightbox.js')
+		// for video lightbox
+		link(rel='stylesheet', property='stylesheet', href='css/prettyPhoto.css', type='text/css', media='screen', title='prettyPhoto main stylesheet')
+		script(src='js/jquery.prettyPhoto.js', type='text/javascript')
+		// contact form js
+		script(type='text/javascript', src='js/jquery.contact.js')
+		// Newsletter js
+		script(type='text/javascript', src='js/jquery.subscribe.js')
+		script(src='http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw', type='text/javascript')
+		script(type='text/javascript').
+			"use strict";
+			//<![CDATA[
+			var map;
+			function load() {
+			if (GBrowserIsCompatible()) {
+			map = new GMap2(document.getElementById("map"));
+			map.setCenter(new GLatLng(-37.817682, 144.957595), 13);
+			document.getElementById("map").checked = true;
+			toggleZoom(false);
+			}
+			}
+			function toggleZoom(isChecked) {
+			if (isChecked) {
+			map.enableScrollWheelZoom();
+			} else {
+			map.disableScrollWheelZoom();
+			}
+			}
+			//]]>
+		// about jquery
+		script(src='js/jquery.classyloader.min.js')
+		script(defer='', src='js/jquery.flexslider.js')
+		script(src='js/jquery.easing.js')
+		script(src='js/jquery.mousewheel.js')
+		script(defer='', src='js/slideroption.js')
+		// Home Testimonial
+		script.
+		// for coundown jquary
+		script(type='text/javascript', src='js/jquery.countTo.js')
+		script(type='text/javascript').
+			jQuery(function($) {
+			$(document).ready( function() {
+			//enabling stickUp on the '.navbar-wrapper' class
+			$('.navbar-wrapper').stickUp({
+			parts: {
+			0: 'banner',
+			1: 'features',
+			2: 'courses',
+			3: 'teachers',
+			4: 'pricing',
+			5: 'testimonial',
+			6: 'blog',
+			7: 'contact'
+			},
+			itemClass: 'menuItem',
+			itemHover: 'active',
+			topMargin: 'auto'
+			});
+			// run rlightbox
+			$( ".lb" ).rlightbox();
+			$( ".lb_title-overwritten" ).rlightbox({overwriteTitle: true});
+			$('.flexslider').flexslider({
+			animation: "fade",
+			animationLoop: true,
+			slideshow: true,
+			pauseOnAction: false,
+			slideshowSpeed: 7000,
+			controlNav: true,
+			start: function(slider){
+			$('body').removeClass('loading');
+			}
+			});
+			var activeImage;
+			var getmaxHeight = 0;
+			$(".testimonialText li").each(function(index, element) {
+			if($(this).height()>getmaxHeight){
+			getmaxHeight = $(this).height();
+			$(".footerTopContent").height(getmaxHeight);
+			}
+			});
+			$(".testimonialText li").fadeTo("fast",0);
+			$(".testimonialText li:first").fadeTo("fast",1);
+			$(".imageSlide .imageBox").removeClass("activeImage");
+			$(".imageSlide .imageBox:first").addClass("activeImage");
+			$(".imageSlide .imageBox").mouseenter(function(){
+			if(!$(this).hasClass("activeImage")){
+			var gi = $(this).index();
+			//console.log(gi);
+			$(".imageSlide .imageBox").removeClass("activeImage");
+			$(this).addClass("activeImage");
+			$(".testimonialText li").fadeTo("fast",0);
+			$(".testimonialText li:eq("+gi+")").fadeTo("fast",1);
+			}
+			})
+			// Video lightbox
+			$("a[data-rel^='prettyPhoto']").prettyPhoto();
+			// for client work jquary
+			var windowBottom = $(window).height()+0;
+			var index=0;
+			$(document).scroll(function(){
+			divposition = parseInt($('.factabout').offset().top),10;
+			divsrollpos = parseInt($(window).scrollTop()),10;
+			ctop = parseInt(divposition-divsrollpos),10;
+			if(ctop<Math.round(windowBottom/2)){
+			if(index==0){
+			$('.timer').each(count);
+			}
+			index++;
+			}
+			});
+			function count(options) {
+			var $this = $(this);
+			options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+			$this.countTo(options);
+			}
+			});
+			});
+		// for theme custom jquery
+		script(src='js/custom.js')

@@ -1,0 +1,139 @@
+doctype html
+//if lt IE 7 
+  html.ie.ie6.no-js(lang='en')  
+//if IE 7 
+  html.ie.ie7.no-js(lang='en')  
+//if IE 8 
+  html.ie.ie8.no-js(lang='en')  
+//if IE 9 
+  html.ie.ie9.no-js(lang='en')  
+// [if gt IE 9] <!
+html.no-js(lang='en')
+  // <![endif]
+  head
+    meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title e Learn
+    meta(name='description', content='')
+    // CSS FILES
+    link(rel='stylesheet', type='text/css', media='screen', href='css/bootstrap.min.css')
+    link(rel='stylesheet', href='js/inner-js/css/settings.css')
+    link(rel='stylesheet', type='text/css', media='screen', href='css/main.css')
+    link(rel='stylesheet', type='text/css', href='css/inner-style.css', media='screen')
+    link(rel='stylesheet', type='text/css', media='screen', href='css/skins/default.css', data-name='skins')
+    // Theme Switcher
+    link(rel='stylesheet', type='text/css', href='switcher/css/switcher.css', media='screen')
+    // google font style
+    link(href='http://fonts.googleapis.com/css?family=Great+Vibes', rel='stylesheet', type='text/css')
+    // font-family: 'Great Vibes', cursive;
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700', rel='stylesheet', type='text/css')
+    // font-family: 'Open Sans', sans-serif;
+    // font icon css style
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    style.
+      .menu {
+      position: static;
+      margin: 0;
+      }
+  body.inner-page
+    // wrapper start
+    #wrapper.wrapper
+      // Preloader
+      #preloader
+        #status
+      // Start Header
+      header
+        // menu start
+        .menu
+          .navbar-wrapper
+            .container
+              // Logo
+              .logo
+                a(href='index.html')
+                  span.img-circle e
+                  | learn
+              // Logo
+              .navwrapper
+                .navbar.navbar-inverse.navbar-static-top
+                  .container
+                    nav.navArea
+                      .navbar-header
+                        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                          span.icon-bar
+                          span.icon-bar
+                          span.icon-bar
+                      .navbar-collapse.collapse
+                        ul#navigation.nav.navbar-nav
+                          li#home.menuItem
+                            a(href='/') home
+                          li.menuItem
+                            a(href='/course') courses
+                          li.menuItem
+                            a(href='/login') Login
+              // End Navbar
+        // menu end
+      // End Header
+      // start wrapper
+      section.wrapper
+        section.page_head
+          .container
+            .row
+              .col-lg-12.col-md-12.col-sm-12
+                h2 Login/Register
+                nav#breadcrumbs
+                  ul
+                    li You are here:
+                    li
+                      a(href='index.html') Home
+                    li
+                      a(href='index.html') Login or Register
+        section.content.blog
+          .container
+            .login-boxs(style = "height:535px")
+              .lb-header
+                a#login-box-link.active(href='#') Login
+                a#signup-box-link(href='#') Sign Up
+              .social-logins
+                a(href='/auth/facebook')
+                  i.fa.fa-facebook.fa-lg
+                  |         Login in with facebook
+                a(href='/auth/google')
+                  i.fa.fa-google-plus.fa-lg
+                  |         log in with Google
+              form(method='post',action='/signup').email-logins
+                .u-form-group
+                  input(type='username', placeholder='Username', name='username')
+                .u-form-group
+                  input(type='password', placeholder='Password', name='password')
+                .u-form-group
+                  button(type="submit") Log in
+                .u-form-group
+                  a.forgot-passwords(href='#') Forgot password?
+              form(method='post',action='/register').email-signups
+                .u-form-group
+                  input(type='text', placeholder='First name', name="first")
+                .u-form-group
+                  input(type='text', placeholder='Last name', name="last")
+                .u-form-group
+                  input(type='text', placeholder='Username', name="username")
+                .u-form-group
+                  input(type='email', placeholder='Email', name="email")
+                .u-form-group
+                  input(type='password', placeholder='Password', name="password")
+                .u-form-group
+                  input(type='password', placeholder='Confirm Password', name="password2")
+                .u-form-group
+                  button(type="submit") Sign Up
+      // end wrapper
+    // jquary min js
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/jquery.easing.1.3.js')
+    script(src='js/retina-1.1.0.min.js')
+    script(src='js/inner-js/js/jquery.theme.revolution.min.js')
+    script(type='text/javascript', src='js/jquery.jcarousel.js')
+    script(type='text/javascript', src='js/jquery.isotope.min.js')
+    script(type='text/javascript', src='js/swipe.js')
+    script(src='js/main.js')
+    // for theme custom jquery
+    script(src='js/custom.js')
